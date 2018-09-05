@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Proyecto WebVR - Laberinto</title>
+  <script src="https://aframe.io/releases/0.5.0/aframe.min.js"></script>
+  <script src="https://cdn.rawgit.com/donmccurdy/aframe-extras/v3.13.1/dist/aframe-extras.min.js"></script>
+  <script src="https://cdn.rawgit.com/ngokevin/kframe/master/components/sun-sky/dist/aframe-sun-sky.min.js"></script>
+</head>
+<body>
+  <a-scene>
+    <a-assets>
+      <img src="./assets/grass.jpg" id="suelo">
+      <img src="./assets/pared.jpg" id="pared">
+      <audio src="./assets/ambiente.mp3" id="ambiente" preload="auto"></audio>
+      <audio src="./assets/desaparecer.mp3" id="desaparecer" preload="auto"></audio>
+    </a-assets>
+
+    <a-entity id="jugador" camera kinematic-body universal-controls position="0 1.6 0">
+      <a-cursor fuse="true" fuse-timeout="800"></a-cursor>
+      <a-text value="Destruye las pelotas" id="ganador" width="3" color="blank" font="mozillavr" position="0 .1 -1" anchor="center" align="center">
+        <a-animation attribute="visible" dur="4000" from="true" to="false"></a-animation>
+      </a-text>
+      <a-text value="" width="3" id="score" color="blank" font="mozillavr" position="-1.2 .7 -1" anchor="center" align="center"></a-text>
+    </a-entity>
+
+    <a-sun-sky material="sunPosition: 0 1 0"></a-sun-sky>
+
+    <a-entity id="muros"></a-entity>
+
+    <a-entity id="premios"></a-entity>
+
+    <a-sound src="#ambiente" autoplay="true" loop="true" position="0 2 5"></a-sound>
+    <a-sound src="#desaparecer" position="0 2 5" sound="on: click"></a-sound>
+
+    <a-grid static-body src="#suelo"></a-grid>
+  </a-scene>
+
+  <script src="./script.js"></script>
+</body>
+</html>
